@@ -1,0 +1,13 @@
+.timeline_edit_page {
+    text-align: left;
+    margin: 2rem;;
+
+}
+
+.timeline_edit_page ul{
+    text-align: left;
+    border: red 2rem solid;
+    width: 60vw;
+    list-style: none;
+    padding: 1rem;
+}

@@ -1,0 +1,18 @@
+nav {
+    border: blue 1rem solid;
+    position: fixed;
+    bottom: 10rem;
+    left: 100%;
+    transform: translateX(-100%);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+}
+
+nav a {
+    border: green 1rem solid;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+}
+

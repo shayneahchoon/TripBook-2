@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import TimeLineEditPage from "@pages/TimeLineEditPage/TimeLineEditPage";
+import TimeLinePage from "@pages/TimeLinePage/TimeLinePage";
+import HomePage from "@pages/HomePage/HomePage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navbar from "@components/Navbar/Navbar";
+import { Provider } from "react-redux";
+import store from "./redux/Store";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navbar />}>
+              <Route index element={<HomePage />} />
+              <Route path="/edit" element={<TimeLineEditPage />} />
+              <Route path="/timeline" element={<TimeLinePage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }

@@ -1,0 +1,14 @@
+.activity_editor_card {
+    border: green 1rem solid;
+    margin-bottom: 1rem;
+}
+
+.activity_editor_options {
+    display: flex;
+    grid-template-columns: auto auto auto auto;
+}
+
+.activity_editor_options button {
+    border: 1rem yellow solid;
+    width: 100%;
+}

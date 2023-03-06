@@ -1,0 +1,14 @@
+.calendar_table{
+    width: 100%;
+}
+
+.calendar_table td{
+    border: 0rem blue solid;
+    margin: 1rem;
+    background-color: aquamarine;
+}
+
+#Monday{
+    border: 0rem red solid;
+    background-color: salmon;
+}
