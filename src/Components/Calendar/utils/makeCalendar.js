@@ -8,6 +8,10 @@ export const days = [
   "Saturday",
 ];
 
+export const BOOKED_IN = "IN";
+export const BOOKED_OUT = "OUT";
+export const BOOKED_ACTIVE = "=";
+
 const normalizeDate = (time) => {
   const date = new Date(time);
   date.setMilliseconds(0);
@@ -15,6 +19,63 @@ const normalizeDate = (time) => {
   date.setMinutes(0);
   date.setHours(0);
   return date.getTime();
+};
+
+const getBookingStatus = (index, bookingsList, date) => {
+  let bookingIndex = index;
+  let bookingStatus = null;
+
+  if (bookingIndex < bookingsList.length) {
+    const booking = bookingsList[bookingIndex];
+    const checkin = normalizeDate(booking.checkin);
+    const checkout = normalizeDate(booking.checkout);
+    const currTime = normalizeDate(date);
+    if (checkin === currTime) {
+      bookingStatus = BOOKED_IN;
+    } else if (checkout === currTime) {
+      bookingStatus = BOOKED_OUT;
+      bookingIndex++;
+    } else if (currTime > checkin && currTime < checkout) {
+      bookingStatus = BOOKED_ACTIVE;
+    }
+  }
+
+  return [bookingIndex, bookingStatus];
+};
+
+export const formatCalendarByWeek = (calendar) => {
+  if (calendar.length <= 0) return calendar;
+
+  const startDay = calendar[0].day;
+  const endDay = calendar[calendar.length - 1].day;
+  const startBuffer = [];
+  const endBuffer = [];
+
+  for (let i = 0; i < startDay; i++) {
+    startBuffer.push({
+      day: i,
+      date: null,
+      booked: null,
+    });
+  }
+
+  for (let i = endDay + 1; i < days.length; i++) {
+    endBuffer.push({
+      day: i,
+      date: null,
+      booked: null,
+    });
+  }
+
+  const fullFormattedCalendar = [...startBuffer, ...calendar, ...endBuffer];
+  const formattedByWeek = [];
+
+  for (let i = 0; i < fullFormattedCalendar.length; i += days.length) {
+    const week = fullFormattedCalendar.slice(i, i + days.length);
+    formattedByWeek.push(week);
+  }
+
+  return formattedByWeek;
 };
 
 export const makeCalendar = (startMonth, year, availBookings) => {
@@ -30,24 +91,14 @@ export const makeCalendar = (startMonth, year, availBookings) => {
 
   while (currMonth <= startMonth) {
     let bookingStatus = null;
-    if (bookingIndex < availBookings.length) {
-      const booking = availBookings[bookingIndex];
-      const checkin = normalizeDate(booking.checkin);
-      const checkout = normalizeDate(booking.checkout);
-      const currTime = normalizeDate(date);
-
-      if (checkin === currTime) {
-        bookingStatus = "IN";
-      } else if (checkout === currTime) {
-        bookingStatus = "OUT";
-        bookingIndex++;
-      } else if (currTime > checkin && currTime < checkout) {
-        bookingStatus = "ACTIVE";
-      }
-    }
+    [bookingIndex, bookingStatus] = getBookingStatus(
+      bookingIndex,
+      availBookings,
+      date
+    );
 
     dateList.push({
-      day: days[date.getDay()],
+      day: date.getDay(),
       date: date.getDate(),
       booked: bookingStatus,
     });

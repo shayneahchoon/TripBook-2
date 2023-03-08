@@ -1,14 +1,52 @@
+:root {
+    --active_border_colour: black;
+    --inactive_border_colour: black;
+}
+
 .calendar_table{
     width: 100%;
+    table-layout: fixed;
 }
 
 .calendar_table td{
     border: 0rem blue solid;
     margin: 1rem;
-    background-color: aquamarine;
+    background-color: cornsilk;
+    height: 5rem;
 }
 
-#Monday{
+.calendar_table td > div {
+    display: grid;
+    grid-template-rows: 1em 4em;
+}
+
+.calendar_table td .day {
+    text-align: right;
+    background-color: aqua;
+}
+
+.calendar_table td .status {
+    height: 100%;
+}
+
+.calendar_table .check_in {
     border: 0rem red solid;
-    background-color: salmon;
+    background-color: LightGreen;
+    border-left: 0.3rem var(--active_border_colour) solid;
+    border-top: 0.3rem var(--active_border_colour) solid;
+    border-bottom: 0.3rem var(--active_border_colour) solid;
+}
+
+.calendar_table .check_out {
+    border: 0rem red solid;
+    background-color: lightpink;
+    border-right: 0.3rem var(--active_border_colour) solid;
+    border-top: 0.3rem var(--active_border_colour) solid;
+    border-bottom: 0.3rem var(--active_border_colour) solid;
+}
+
+.calendar_table .active {
+    background-color: aquamarine;
+    border-top: 0.3rem black solid;
+    border-bottom: 0.3rem black solid;
 }
