@@ -1,21 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
 import "./HomePage.css";
 import Calendar from "@components/Calendar/Calendar";
-const HomePage = ({ username }) => {
+import { Outlet } from "react-router-dom";
+const HomePage = () => {
   return (
     <section className="homepage">
-      <h1>Welcome {username}</h1>
-      <div>Now</div>
-      <div>Flights</div>
+      {" "}
+      <h1>Arrivals / Departures</h1>
       <Calendar />
-      <div>Time</div>
+      <h2>Add an Event</h2>
+      <Outlet />
     </section>
   );
-};
-
-HomePage.propTypes = {
-  username: PropTypes.string,
 };
 
 export default HomePage;

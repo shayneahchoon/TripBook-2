@@ -1,52 +1,74 @@
 :root {
     --active_border_colour: black;
     --inactive_border_colour: black;
+    --day_border_colour: aqua;
+    --border_size: 0.3rem;
+    --border_size_nega: -0.3rem;
+}
+
+.calendar_table th {
+    text-align: center;
 }
 
 .calendar_table{
     width: 100%;
     table-layout: fixed;
+    border-top: 0.2rem solid grey;
+    border-bottom: 0.2rem solid grey;
 }
 
 .calendar_table td{
-    border: 0rem blue solid;
-    margin: 1rem;
     background-color: cornsilk;
     height: 5rem;
+    padding: 0.31rem;
+    box-shadow: 
+    inset 0rem 0.1rem burlywood, 
+    inset 0rem 0.1rem burlywood;
 }
 
 .calendar_table td > div {
     display: grid;
-    grid-template-rows: 1em 4em;
+    grid-template-rows: 1.1em 3.9em;
 }
 
 .calendar_table td .day {
     text-align: right;
-    background-color: aqua;
+    
 }
+
+.calendar_table .out_of_month {
+    background-color: lightgray;
+    background: repeating-linear-gradient( -45deg,  cornsilk, lightgray 0.25rem );
+}
+
 
 .calendar_table td .status {
     height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 0.75rem;
 }
 
 .calendar_table .check_in {
-    border: 0rem red solid;
     background-color: LightGreen;
-    border-left: 0.3rem var(--active_border_colour) solid;
-    border-top: 0.3rem var(--active_border_colour) solid;
-    border-bottom: 0.3rem var(--active_border_colour) solid;
+    box-shadow: 
+    inset var(--border_size) var(--border_size) var(--active_border_colour), 
+    inset 0rem var(--border_size_nega) var(--active_border_colour);
+    font-weight: bold;
 }
 
 .calendar_table .check_out {
-    border: 0rem red solid;
     background-color: lightpink;
-    border-right: 0.3rem var(--active_border_colour) solid;
-    border-top: 0.3rem var(--active_border_colour) solid;
-    border-bottom: 0.3rem var(--active_border_colour) solid;
+    box-shadow: 
+    inset var(--border_size_nega) var(--border_size) var(--active_border_colour), 
+    inset 0rem var(--border_size_nega) var(--active_border_colour);
+    font-weight: bold;
 }
 
 .calendar_table .active {
     background-color: aquamarine;
-    border-top: 0.3rem black solid;
-    border-bottom: 0.3rem black solid;
+    box-shadow: 
+    inset 0rem var(--border_size) var(--active_border_colour), 
+    inset 0rem var(--border_size_nega) var(--active_border_colour);
 }

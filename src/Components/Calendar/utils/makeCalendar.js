@@ -8,9 +8,9 @@ export const days = [
   "Saturday",
 ];
 
-export const BOOKED_IN = "IN";
-export const BOOKED_OUT = "OUT";
-export const BOOKED_ACTIVE = "=";
+export const BOOKED_IN = "check_in";
+export const BOOKED_OUT = "check_out";
+export const BOOKED_ACTIVE = "active";
 
 const normalizeDate = (time) => {
   const date = new Date(time);
