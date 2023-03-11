@@ -3,7 +3,7 @@ nav {
     position: fixed;
     bottom: 10rem;
     left: 100%;
-    transform: translateX(-100%);
+    transform: translateX(-101%);
     display: flex;
     flex-wrap: wrap;
     flex-direction: row-reverse;
