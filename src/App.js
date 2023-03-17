@@ -9,11 +9,13 @@ import SelectEvent from "@components/Calendar/EditorOptions/SelectEvent/SelectEv
 import Flight, {
   FLIGHT_TYPES,
 } from "@components/Calendar/EditorOptions/Flight/Flight";
+import FlightSummary from "@components/Calendar/EditorOptions/Flight/FlightSummary";
 import SaveFlight from "@components/Calendar/EditorOptions/Flight/SaveFlight";
 import { Provider } from "react-redux";
 import store from "./redux/Store";
 import defaultLoader from "./Routes/Loaders/FlightLoader";
-
+import saveLoader from "./Routes/Loaders/SaveLoader";
+import Accomodation from "@components/Calendar/EditorOptions/Accomodation/Accomodation";
 
 const CustomBrowserRouter = createBrowserRouter([
   {
@@ -44,8 +46,21 @@ const CustomBrowserRouter = createBrowserRouter([
             element: <Flight type={FLIGHT_TYPES.CONNECTING_ARRIVAL} />,
           },
           {
-            path: "save_flight",
+            path: "flight_summary",
             loader: defaultLoader,
+            element: <FlightSummary />,
+          },
+          {
+            path: "save_flight",
+            loader: saveLoader,
+            element: <SaveFlight />,
+          },
+          {
+            path: "add_accomodation",
+            element: <Accomodation />,
+          },
+          {
+            path: "save_accomodation",
             element: <SaveFlight />,
           },
         ],

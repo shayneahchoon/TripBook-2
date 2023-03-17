@@ -10,57 +10,28 @@ export const FLIGHT_TYPES = {
 };
 
 const HiddenInputs = () => {
-  const {
-    location,
-    flight,
-    date,
-    time,
-  } = useLoaderData();
+  const { location, flight, date, time } = useLoaderData();
   return (
     <>
       {location &&
         location.map((value, index) => {
           return (
-            <input
-              key={index}
-              type="hidden"
-              name="location"
-              value={value}
-            />
+            <input key={index} type="hidden" name="location" value={value} />
           );
         })}
       {flight &&
         flight.map((value, index) => {
           return (
-            <input
-              key={index}
-              type="hidden"
-              name="flight"
-              value={value}
-            />
+            <input key={index} type="hidden" name="flight" value={value} />
           );
         })}
       {date &&
         date.map((value, index) => {
-          return (
-            <input
-              key={index}
-              type="hidden"
-              name="date"
-              value={value}
-            />
-          );
+          return <input key={index} type="hidden" name="date" value={value} />;
         })}
       {time &&
         time.map((value, index) => {
-          return (
-            <input
-              key={index}
-              type="hidden"
-              name="time"
-              value={value}
-            />
-          );
+          return <input key={index} type="hidden" name="time" value={value} />;
         })}
     </>
   );
@@ -71,19 +42,15 @@ const Flight = ({ type = FLIGHT_TYPES.DIRECT_DEPARTURE }) => {
     <section>
       <h3>{type} details</h3>
       <Form method="get">
+        <HiddenInputs />
         <label htmlFor="location">Airport</label>
         <input id="location" name="location" />
         <label htmlFor="flight">Flight</label>
         <input id="flight" name="flight" />
         <label htmlFor="date">Date</label>
-        <input
-          id="date"
-          name="date"
-          placeholder="DD/MM/YYYY"
-        />
+        <input id="date" name="date" type="date" required />
         <label htmlFor="time">Time</label>
-        <input id="time" name="time" placeholder="HH:MM" />
-        <HiddenInputs />
+        <input id="time" name="time" type="time" required />
         <hr />
         <h3>Next Step</h3>
         <div className="next_options_grid">
@@ -100,7 +67,9 @@ const Flight = ({ type = FLIGHT_TYPES.DIRECT_DEPARTURE }) => {
             </>
           ) : (
             <>
-              <button formAction="/save_flight">Save Flight</button>
+              <button formAction="/flight_summary">
+                View Summary and Save
+              </button>
             </>
           )}
         </div>

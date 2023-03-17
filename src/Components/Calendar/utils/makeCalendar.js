@@ -8,6 +8,21 @@ export const days = [
   "Saturday",
 ];
 
+export const monthList = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 export const BOOKED_IN = "check_in";
 export const BOOKED_OUT = "check_out";
 export const BOOKED_ACTIVE = "active";
@@ -43,6 +58,38 @@ const getBookingStatus = (index, bookingsList, date) => {
   return [bookingIndex, bookingStatus];
 };
 
+const getFlightStatus = (index, flightList, date) => {
+  let flightIndex = index;
+  let flightDetails = [];
+
+  let flight;
+  let flightTime;
+  const currTime = normalizeDate(date);
+
+  while (flightIndex < flightList.length) {
+    flight = flightList[flightIndex];
+    flightTime = normalizeDate(flight.timestamp);
+    if (flightTime < currTime) {
+      flightIndex++;
+    } else {
+      break;
+    }
+  }
+
+  while (flightIndex < flightList.length) {
+    flight = flightList[flightIndex];
+    flightTime = normalizeDate(flight.timestamp);
+    if (flightTime == currTime) {
+      flightDetails.push(flight);
+      flightIndex++;
+    } else {
+      break;
+    }
+  }
+
+  return [flightIndex, flightDetails];
+};
+
 export const formatCalendarByWeek = (calendar) => {
   if (calendar.length <= 0) return calendar;
 
@@ -56,6 +103,7 @@ export const formatCalendarByWeek = (calendar) => {
       day: i,
       date: null,
       booked: null,
+      flights: [],
     });
   }
 
@@ -64,6 +112,7 @@ export const formatCalendarByWeek = (calendar) => {
       day: i,
       date: null,
       booked: null,
+      flights: [],
     });
   }
 
@@ -78,11 +127,12 @@ export const formatCalendarByWeek = (calendar) => {
   return formattedByWeek;
 };
 
-export const makeCalendar = (startMonth, year, availBookings) => {
+export const makeCalendar = (startMonth, year, availBookings, flightList) => {
   let dateList = [];
   let currDay = 1;
   let currMonth = startMonth;
   let bookingIndex = 0;
+  let flightIndex = 0;
 
   const date = new Date();
   date.setFullYear(year);
@@ -97,10 +147,18 @@ export const makeCalendar = (startMonth, year, availBookings) => {
       date
     );
 
+    let flightDetails = null;
+    [flightIndex, flightDetails] = getFlightStatus(
+      flightIndex,
+      flightList,
+      date
+    );
+
     dateList.push({
       day: date.getDay(),
       date: date.getDate(),
       booked: bookingStatus,
+      flights: flightDetails,
     });
 
     date.setDate(++currDay);

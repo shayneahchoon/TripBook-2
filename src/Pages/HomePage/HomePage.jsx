@@ -6,7 +6,6 @@ const HomePage = () => {
   return (
     <section className="homepage">
       {" "}
-      <h1>Arrivals / Departures</h1>
       <Calendar />
       <h2>Add an Event</h2>
       <Outlet />

@@ -7,9 +7,9 @@ const SelectEvent = () => {
     <section>
       <h3>Select your event type:</h3>
       <div className="select_event_container">
-        <Link to="/accomodation">Accomodation</Link>
+        <Link to="/add_accomodation">Accomodation</Link>
         <Link to="/direct_departure">Flight</Link>
-        <Link to="/car">Car</Link>
+        <Link to="">Car</Link>
       </div>
     </section>
   );

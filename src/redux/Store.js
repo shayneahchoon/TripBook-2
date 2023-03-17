@@ -5,7 +5,7 @@ import flightReducer from "./reducers/Flights";
 const store = configureStore({
   reducer: {
     accommodation: accommodationReducer,
-    flight: flightReducer
+    flights: flightReducer,
   },
 });
 
