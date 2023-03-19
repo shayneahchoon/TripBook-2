@@ -19,7 +19,6 @@ export const Calendar = () => {
   const calendar = makeCalendar(month, 2023, accomodationList, flightsList);
   const formattedCalendar = formatCalendarByWeek(calendar);
 
-  console.log(accomodationList)
   return (
     <>
       <div className="calendar_controls">
