@@ -15,7 +15,11 @@ import { Provider } from "react-redux";
 import store from "./redux/Store";
 import defaultLoader from "./Routes/Loaders/FlightLoader";
 import saveLoader from "./Routes/Loaders/SaveLoader";
+import accomodationLoader from "./Routes/Loaders/AccomodationLoader";
 import Accomodation from "@components/Calendar/EditorOptions/Accomodation/Accomodation";
+import AccomodationSummary from "@components/Calendar/EditorOptions/Accomodation/AccomodationSummary";
+import SaveAccomodation from "@components/Calendar/EditorOptions/Accomodation/SaveAccomodation";
+
 
 const CustomBrowserRouter = createBrowserRouter([
   {
@@ -60,8 +64,14 @@ const CustomBrowserRouter = createBrowserRouter([
             element: <Accomodation />,
           },
           {
+            path: "accomodation_summary",
+            loader: accomodationLoader,
+            element: <AccomodationSummary />,
+          },
+          {
             path: "save_accomodation",
-            element: <SaveFlight />,
+            loader: accomodationLoader,
+            element: <SaveAccomodation />,
           },
         ],
       },

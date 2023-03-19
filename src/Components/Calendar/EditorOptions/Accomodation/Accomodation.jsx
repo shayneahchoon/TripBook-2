@@ -8,14 +8,16 @@ const Accomodation = () => {
     <section>
       <h3>Accomodation details</h3>
       <Form method="get">
-        <label htmlFor="address_line_1">Address Line 1</label>
+        <label htmlFor="address_line_1">Address Line</label>
         <input id="address_line_1" name="address_line_1" />
-        <label htmlFor="address_line_2">Address Line 2</label>
-        <input id="address_line_2" name="address_line_2" />
         <label htmlFor="post_code">Post Code</label>
         <input id="post_code" name="post_code" />
-        <label htmlFor="date">Date</label>
-        <input id="date" name="date" type="date" required />
+        <label htmlFor="check_in">Check In Date</label>
+        <input id="check_in" name="check_in" type="date" required />
+        <label htmlFor="check_out">Check Out Date</label>
+        <input id="check_out" name="check_out" type="date" required />
+        <label htmlFor="title">Title</label>
+        <input id="title" name="title" />
         <hr />
         <h3>Next Step</h3>
         <div className="next_options_grid">

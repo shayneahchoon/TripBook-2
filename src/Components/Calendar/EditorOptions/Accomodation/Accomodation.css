@@ -8,7 +8,7 @@ label {
     width: 100%;
 }
 
-input {
+input, select {
     width: 15rem;
     margin-bottom: 1rem;
     font-size: 2rem;
@@ -17,6 +17,10 @@ input {
 form h3, form hr{
     width: 100%;
     margin-right: 0.5rem;
+}
+
+select {
+    width: 15rem;
 }
 
 
@@ -61,36 +65,22 @@ p[class="status"] {
     width: 50%;
 }
 
-.summary_list {
-    list-style: none;
-    padding-left: 0rem;
-    width: 100%;
-    margin-right: 0.5rem;
-}
-
-.summary_list li {
-    height: 5rem;
-    border: green 0.3rem solid;
-    background-color: aliceblue;
-    margin-bottom: 1rem;
-    display: grid;
-    grid-template-columns: 25% 75%;
-}
-
-.summary_location {
-    margin: 0.3rem;
-    font-size: 2rem;
-    padding: 0.3rem;
+p {
     display: flex;
-    align-items: center;
-    border: gray 0.1rem solid;
+    flex-wrap: wrap;
 }
 
-.summary_time {
-    padding-left: 0.3rem;;
-    margin: 0.3rem;
-    font-size: 1rem;
-    border: gray 0.1rem solid;
-    display: grid;
-    grid-template-rows: auto auto auto;
+p span {
+    width: 100%;
+}
+
+p[class="summary_paragraph"] span:nth-child(2n){
+    color: black;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+}
+
+p[class="summary_paragraph"] span:nth-child(2n + 1){
+    color: darkslategrey;
+    font-weight: bold;
 }

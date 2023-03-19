@@ -6,17 +6,20 @@ import {
   makeCalendar,
   monthList,
 } from "./utils/makeCalendar";
+import { getAccomodations, getFlights } from "../../redux/utils";
 import Week from "./Week";
 
 export const Calendar = () => {
-  const data = useSelector((state) => state.accommodation);
+  const accomodations = useSelector((state) => state.accommodation);
   const flights = useSelector((state) => state.flights);
   let [month, setMonth] = useState(2);
-  const flightsList = Object.values(flights);
+  const accomodationList = getAccomodations(accomodations);
+  const flightsList = getFlights(flights);
 
-  const calendar = makeCalendar(month, 2023, data, flightsList);
+  const calendar = makeCalendar(month, 2023, accomodationList, flightsList);
   const formattedCalendar = formatCalendarByWeek(calendar);
 
+  console.log(accomodationList)
   return (
     <>
       <div className="calendar_controls">
