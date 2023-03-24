@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Calendar.css";
 import { shape, arrayOf, string, number } from "prop-types";
 import { BOOKED_IN, BOOKED_OUT, BOOKED_ACTIVE } from "./utils/makeCalendar";
@@ -22,7 +23,7 @@ const printStatus = (status, flights) => {
 
   if (status === BOOKED_IN) printString += "🔑";
   if (status === BOOKED_OUT) printString += "🔒";
-  if (status === BOOKED_ACTIVE) printString += "-";
+  if (status === BOOKED_ACTIVE) printString += "👆";
 
   for (let i = 0; i < flights.length; i++) {
     if (flights[i].type === FLIGHT_DEPARTURE) printString += "🛫";
@@ -35,13 +36,20 @@ const printStatus = (status, flights) => {
 const Week = ({ days }) => {
   return (
     <tr>
-      {days.map(({ date, booked, flights }, index) => {
+      {days.map(({ time, date, booked, flights }, index) => {
         return (
           <td key={index} className={setDataCellClass(booked, date)}>
-            <div>
-              <span className="day">{printDay(date)}</span>
-              <span className="status">{printStatus(booked, flights)}</span>
-            </div>
+            {booked == null && flights.length == 0 ? (
+              <div>
+                <span className="day">{printDay(date)}</span>
+                <span className="status">{printStatus(booked, flights)}</span>
+              </div>
+            ) : (
+              <Link to={`/view_day/${time}`}>
+                <span className="day">{printDay(date)}</span>
+                <span className="status">{printStatus(booked, flights)}</span>
+              </Link>
+            )}
           </td>
         );
       })}

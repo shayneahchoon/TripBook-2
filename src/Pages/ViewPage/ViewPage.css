@@ -1,0 +1,8 @@
+.view_page {
+    text-align: left;
+    margin: 0rem;
+}
+
+.view_page h1, h2{
+    margin-left: 0.5rem;
+}

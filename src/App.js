@@ -19,7 +19,7 @@ import accomodationLoader from "./Routes/Loaders/AccomodationLoader";
 import Accomodation from "@components/Calendar/EditorOptions/Accomodation/Accomodation";
 import AccomodationSummary from "@components/Calendar/EditorOptions/Accomodation/AccomodationSummary";
 import SaveAccomodation from "@components/Calendar/EditorOptions/Accomodation/SaveAccomodation";
-
+import ViewPage from "./Pages/ViewPage/ViewPage";
 
 const CustomBrowserRouter = createBrowserRouter([
   {
@@ -83,6 +83,7 @@ const CustomBrowserRouter = createBrowserRouter([
         path: "timeline",
         element: <TimeLinePage />,
       },
+      { path: "view_day/:details", element: <ViewPage /> },
     ],
   },
 ]);

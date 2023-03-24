@@ -100,6 +100,7 @@ export const formatCalendarByWeek = (calendar) => {
 
   for (let i = 0; i < startDay; i++) {
     startBuffer.push({
+      time: null,
       day: i,
       date: null,
       booked: null,
@@ -109,6 +110,7 @@ export const formatCalendarByWeek = (calendar) => {
 
   for (let i = endDay + 1; i < days.length; i++) {
     endBuffer.push({
+      time: null,
       day: i,
       date: null,
       booked: null,
@@ -155,6 +157,7 @@ export const makeCalendar = (startMonth, year, availBookings, flightList) => {
     );
 
     dateList.push({
+      time: date.getTime(),
       day: date.getDay(),
       date: date.getDate(),
       booked: bookingStatus,
